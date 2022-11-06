@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root { /* ":root" serve para acessar a raíz do documento, ou seja, acessa o html de fato, dessa forma podemos criar variáveis no css onde os atributos iniociais será o que estiver dentro do :root, especificado nas variáveis */
+    --card-title-boder-color: #746615;
+    --card-color-primary: #F7DD43; /* Para criar uma variável no css basta iniciá-la com "--" e atibuir um valor depois dos ":" */
+    --card-bg-color: #1D1C19;
+    --bg: url(./assets/bg-yellow.svg)
+}
+
+body.blue {
+    --card-title-boder-color: #338AF3;
+    --card-color-primary: #338AF3;
+    --card-bg-color: #202024;
+    --bg: url(./assets/bg-blue.svg)
+}
+
+body.green {
+    --card-title-boder-color: #047C3F;
+    --card-color-primary: #047C3F;
+    --card-bg-color: #1A1F1B;
+    --bg: url(./assets/bg-green.svg)
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: #121214;
+    background-image: var(--bg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Serve para ocupar todo o espaço da tela */
+}
+
+body * {
+    font-family: 'Roboto', sans-serif;
+}
+
+#app {
+    width: fit-content; /* Encaixar o conteúdo */
+    margin: auto;
+    padding-top: 52px;;
+}
+
+header {
+    margin-bottom: 63px;
+    text-align: center;
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.card {
+    padding: 32px 23px;
+    text-align: center;
+    background: var(--card-bg-color);
+    border-bottom: 2px solid var(--card-color-primary);
+    border-radius: 6px;
+}
+
+.card h2 {
+    display: flex;
+    padding: 8px 16px;
+    border: 1   px solid var(--card-title-boder-color);
+    border-radius: 6px;
+    gap: 16px; /* Espaçamento de um elemento outro */
+    /* Só é possível usar o "justify-content: center" e o "align-items: center" com o "display: flex" */
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto; /* Trabalha apenas com as margins da lateral, sem  a bottom e a top */
+    margin-bottom: 53px;
+    color: #F7DD43;
+}
+
+.card h2 span {
+    color: #E1E1E6;    
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.card ul {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    gap: 24px;
+}
+
+.card ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaço entre os elementos */
+}
+
+.card ul li + li { /* Esse "+" entre os "li" significa que irá procurar um "li" anterior ao elemento que antecedeu o "+", no caso o primeiro "li". Ou seja, basicamente o que ele está dizendo, procure / pegue um li que tenha um li como antecessor ( primeiro li ) */
+    padding-top: 24px;
+    border-top: 1px solid #323238;
+}
+
+.card ul li strong {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 125%;
+    color: #E1E1E6;
+}
+
+.card h2:hover,
+.card ul li strong:hover,
+.card ul li img:hover {
+    transform: scale(1.1); 
+}
+
+.card h2,
+.card ul li strong,
+.card ul li img {
+    transition: .3s
+}
+
+.card {
+    animation: appear .7s forwards; /* fowards serve para manter as propriedades presentes no 100% da animação especificada, nesse caso, "appear" */ 
+    opacity: 0;
+}
+
+@keyframes appear {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1
+    }
+}
+
+@media (min-width: 700px) {
+    #cards {
+        max-width: 670px;
+        flex-direction: row;
+        flex-wrap: wrap; /* Esse "wrap" vai analizar se os conteúdos presentes dentro de "#cards" excederam a "max-width", se excederam ele irá jogar para baixo, ou seja, não transbordará a div cards*/
+    }
+}
